@@ -17,29 +17,23 @@ export default class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-default">
-          <div className="container">
-            <div className="navbar-header">
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
               <Link className="navbar-brand" to="/">Accueil</Link>
-            </div>
-            <div id="navbar">
-              <ul className="nav navbar-nav navbar-right">
-                <li><Link to="/protected">Contenu restreint</Link></li>
-                <li><Link to="/login">Se connecter</Link></li>
-                {this.props.isAuthenticated
-                ? <li><a href='#' onClick={() => this.props.dispatch(AuthActions.logoutAndRedirect())}>Se déconnecter</a> </li>
-                : ''
-                }
-              </ul>
-            </div>
-          </div>
-        </nav>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem eventKey={1}><Link to="/protected">Contenu restreint</Link></NavItem>
+            <NavItem eventKey={2}><Link to="/login">Se connecter</Link></NavItem>
+            {this.props.isAuthenticated
+              ? <NavItem eventKey={3} href='#' onClick={() => this.props.dispatch(AuthActions.logoutAndRedirect())}>Se déconnecter</NavItem>
+              : ''
+            }
+          </Nav>
+        </Navbar>
         <div className='container'>
-          <div className='row'>
-            <div className='col-xs-12'>
-              {this.props.children}
-            </div>
-          </div>
+          {this.props.children}
         </div>
       </div>
     );
