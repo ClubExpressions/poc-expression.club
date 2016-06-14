@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
 export function createConstants(...constants) {
-    return constants.reduce((acc, constant) => {
+    let tab= constants.reduce((acc, constant) => {
         acc[constant] = constant;
         return acc;
     }, {});
+    return tab;
 }
 
 export function createReducer(initialState, reducerMap) {

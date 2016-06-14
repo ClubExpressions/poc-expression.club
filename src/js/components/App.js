@@ -25,9 +25,12 @@ export default class App extends Component {
           </Navbar.Header>
           <Nav>
             <NavItem eventKey={1}><Link to="/protected">Contenu restreint</Link></NavItem>
-            <NavItem eventKey={2}><Link to="/login">Se connecter</Link></NavItem>
+            {!this.props.isAuthenticated
+              ? <NavItem eventKey={2} href="#" onClick={() => this.props.dispatch(AuthActions.loginUserRequest())}>Se connecter avec Facebook</NavItem>
+              : ''
+            }
             {this.props.isAuthenticated
-              ? <NavItem eventKey={3} href='#' onClick={() => this.props.dispatch(AuthActions.logoutAndRedirect())}>Se déconnecter</NavItem>
+              ? <NavItem eventKey={3} href='#' onClick={() => this.props.dispatch(AuthActions.logout())}>Se déconnecter</NavItem>
               : ''
             }
           </Nav>
