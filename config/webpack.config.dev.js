@@ -37,7 +37,10 @@ module.exports = {
   output: {
     path: PATHS.build,
     filename: 'js/[name].js',
-    publicPath: '/'
+    publicPath: '/',
+    devtoolLineToLine: true,
+    sourceMapFilename: "js/[file].map",
+    pathinfo: true
   },
   stats: {
     colors: true,
