@@ -1,16 +1,23 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
 import { persistState } from 'redux-devtools';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
+
+const loggerMiddleware = createLogger();
 
 export default function configureStore(initialState) {
 
-  let middleware = applyMiddleware();
+  let middlewares = [
+    thunkMiddleware,
+    loggerMiddleware
+  ];
   let enhancer;
 
   if (process.env.NODE_ENV !== 'production') {
 
-    let middlewares = [require('redux-immutable-state-invariant')()];
-    middleware = applyMiddleware(...middlewares);
+    let middlewareReduxImmutableStateInvariant = require('redux-immutable-state-invariant')();
+    let middleware = applyMiddleware(...middlewares, middlewareReduxImmutableStateInvariant);
 
     let getDebugSessionKey = function () {
       // By default we try to read the key from ?debug_session=<key> in the address bar
@@ -30,7 +37,7 @@ export default function configureStore(initialState) {
       persistState(getDebugSessionKey())
     );
   } else {
-    enhancer = compose(middleware);
+    enhancer = compose(applyMiddleware(middlewares));
   }
 
   const store = createStore(rootReducer, initialState, enhancer);
