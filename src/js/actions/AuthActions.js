@@ -1,20 +1,19 @@
 // import { checkHttpStatus, parseJSON } from '../utils';
 // import {LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT_USER, FETCH_PROTECTED_DATA_REQUEST, RECEIVE_PROTECTED_DATA} from '../constants';
-import { LOGOUT_USER, LOGIN_USER_REQUEST } from '../constants/ActionTypes';
-// import horizon from '../horizon';
-// import Horizon from '@horizon/client';
+import { LOGOUT_USER, LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS } from '../constants/ActionTypes';
+import horizon from '../horizon';
+import Horizon from '@horizon/client';
 // import { pushState } from 'redux-router';
 // import jwtDecode from 'jwt-decode';
 
-// export function loginUserSuccess(token) {
-//   localStorage.setItem('token', token);
-//   return {
-//     type: LOGIN_USER_SUCCESS,
-//     payload: {
-//       token: token
-//     }
-//   }
-// }
+export function loginUserSuccess(token) {
+  return {
+    type: LOGIN_USER_SUCCESS,
+    payload: {
+      token: token
+    }
+  }
+}
 
 // export function loginUserFailure(error) {
 //   localStorage.removeItem('token');
@@ -30,7 +29,7 @@ import { LOGOUT_USER, LOGIN_USER_REQUEST } from '../constants/ActionTypes';
 export function loginUserRequest(provider="facebook") {
   return {
     type: LOGIN_USER_REQUEST,
-    provider: provider
+    provider
   }
 }
 
@@ -48,12 +47,12 @@ export function logoutAndRedirect() {
 }
 
 export function loginUserWithOAuthProvider(provider="facebook") {
-  return function(dispatch, state) {
+  return (dispatch, state) => {
+    dispatch(loginUserRequest(provider));
     // Browser will be redirected to OAuth URL associated with the provider
     horizon.authEndpoint(provider).subscribe((endpoint) => {
       window.location.pathname = endpoint;
     });
-    dispatch(loginUserRequest());
   }
 }
 
