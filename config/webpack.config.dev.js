@@ -38,8 +38,8 @@ module.exports = {
     path: PATHS.build,
     filename: 'js/[name].js',
     publicPath: '/',
-    devtoolLineToLine: true,
-    sourceMapFilename: "js/[file].map",
+    sourceMapFilename: "js/[name].map",
+    chunkFilename: '[id].chunk.js',
     pathinfo: true
   },
   stats: {
@@ -82,5 +82,5 @@ module.exports = {
     contentBase: path.resolve(__dirname, '../src'),
     port: 3000
   },
-  devtool: 'eval'
+  devtool: 'cheap-module-eval-source-map'
 };
