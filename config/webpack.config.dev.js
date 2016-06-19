@@ -81,7 +81,18 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, '../src'),
     port: 3000,
-    https: true
+    https: true,
+    proxy: {
+      '/horizon/*': {
+        target: 'https://localhost:8181/',
+        // Don't check remote server certificate
+        secure: false,
+        ws: true,
+        hostRewrite: true,
+        protocolRewrite: true,
+        autoRewrite: true
+      }
+    }
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'cheap-module-eval-source-map',
 };
