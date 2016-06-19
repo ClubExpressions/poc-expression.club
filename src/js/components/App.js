@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {Navbar, NavBrand, Nav, NavItem} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -26,11 +27,13 @@ export default class App extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link className="navbar-brand" to="/">Accueil</Link>
+              <Link to="/">Accueil</Link>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1}><Link to="/protected">Contenu restreint</Link></NavItem>
+            <LinkContainer to="/protected">
+              <NavItem eventKey={1}>Contenu restreint</NavItem>
+            </LinkContainer>
             {!isAuthenticated
               ? <NavItem eventKey={2} href="#" onClick={() => loginUserWithOAuthProvider("facebook")}>Se connecter avec Facebook</NavItem>
               : ''
