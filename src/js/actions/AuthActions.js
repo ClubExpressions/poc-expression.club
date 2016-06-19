@@ -2,7 +2,7 @@
 // import {LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT_USER, FETCH_PROTECTED_DATA_REQUEST, RECEIVE_PROTECTED_DATA} from '../constants';
 import { LOGOUT_USER, LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS } from '../constants/ActionTypes';
 import horizon from '../utils/horizon';
-// import { pushState } from 'redux-router';
+import { pushState } from 'redux-router';
 // import jwtDecode from 'jwt-decode';
 
 export function loginUserSuccess(token) {
@@ -42,7 +42,7 @@ export function logoutAndRedirect() {
     return (dispatch, state) => {
         horizon.disconnect();
         dispatch(logout());
-        // dispatch(pushState(null, '/login'));
+        dispatch(pushState(null, '/'));
     }
 }
 

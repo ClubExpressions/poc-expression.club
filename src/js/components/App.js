@@ -35,11 +35,11 @@ export default class App extends Component {
               <NavItem eventKey={1}>Contenu restreint</NavItem>
             </LinkContainer>
             {!isAuthenticated
-              ? <NavItem eventKey={2} href="#" onClick={() => loginUserWithOAuthProvider("facebook")}>Se connecter avec Facebook</NavItem>
+              ? <NavItem eventKey={2} href="#" onClick={() => loginUserWithOAuthProvider("facebook")}>Entrer ou s'inscrire au Club</NavItem>
               : ''
             }
             {isAuthenticated
-              ? <NavItem eventKey={3} href='#' onClick={logoutAndRedirect}>Se déconnecter</NavItem>
+              ? <NavItem eventKey={3} href='#' onClick={logoutAndRedirect}>Quitter le Club</NavItem>
               : ''
             }
           </Nav>
