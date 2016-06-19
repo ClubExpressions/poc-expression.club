@@ -1,5 +1,5 @@
 import {createReducer} from '../utils';
-import horizon from '../horizon'
+import horizon from '../utils/horizon'
 import {LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER} from '../constants/ActionTypes';
 // import jwtDecode from 'jwt-decode';
 
