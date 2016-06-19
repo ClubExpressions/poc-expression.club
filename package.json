@@ -14,7 +14,7 @@
     "clean:build": "node ./bin/clean.js createdir",
     "build:html": "node ./bin/buildHtml.js",
     "prestart": "node ./bin/clean.js",
-    "start": "webpack-dev-server --config ./config/webpack.config.dev.js --hot --inline --progress",
+    "start": "hz serve --dev --secure --key-file horizon-key.pem --cert-file horizon-cert.pem & webpack-dev-server --config ./config/webpack.config.dev.js --hot --inline --progress",
     "prebuild": "npm run clean:build && npm run build:html",
     "build": "set NODE_ENV=production& NODE_ENV=production& webpack -p --config ./config/webpack.config.prod.js --progress",
     "lint": "eslint config src/js/** --ext .js",
