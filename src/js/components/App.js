@@ -19,7 +19,7 @@ export default class App extends Component {
 
   render () {
 
-    const {logout, loginUserWithOAuthProvider, isAuthenticated} = this.props;
+    const {logoutAndRedirect, loginUserWithOAuthProvider, isAuthenticated} = this.props;
 
     return (
       <div>
@@ -32,11 +32,11 @@ export default class App extends Component {
           <Nav>
             <NavItem eventKey={1}><Link to="/protected">Contenu restreint</Link></NavItem>
             {!isAuthenticated
-              ? <NavItem eventKey={2} href="#" onClick={loginUserWithOAuthProvider}>Se connecter avec Facebook</NavItem>
+              ? <NavItem eventKey={2} href="#" onClick={() => loginUserWithOAuthProvider("facebook")}>Se connecter avec Facebook</NavItem>
               : ''
             }
             {isAuthenticated
-              ? <NavItem eventKey={3} href='#' onClick={logout}>Se déconnecter</NavItem>
+              ? <NavItem eventKey={3} href='#' onClick={logoutAndRedirect}>Se déconnecter</NavItem>
               : ''
             }
           </Nav>
