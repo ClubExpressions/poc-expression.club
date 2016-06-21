@@ -1,5 +1,19 @@
 # POC for Club des Expressions project
 
+## Objectives
+
+- [x] Setup projet
+  - [x] From scratch or from community boilerplate
+  - [x] RIA app + Horizon.io
+  - [x] Hot reload
+  - [x] Source map enabled
+- [x] Social authentication (Facebook)
+- [ ] Read anonymous data (list of colleges)
+- [ ] Persist personnal data (name, college)
+- [ ] Define notion of "admin"
+- [ ] As an admin, list all registered users
+- [ ] As an admin, update data of one registered user
+
 ## Installation
 
 ```
