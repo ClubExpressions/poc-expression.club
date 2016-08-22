@@ -63,32 +63,12 @@ serve_static = "build"
 # Authentication Options
 # Each auth subsection will add an endpoint for authenticating through the
 # specified provider.
-# 'token_secret' is the key used to sign jwts
 # 'allow_anonymous' issues new accounts to users without an auth provider
 # 'allow_unauthenticated' allows connections that are not tied to a user id
 # 'auth_redirect' specifies where users will be redirected to after login
 #------------------------------------------------------------------------------
-token_secret = "VobRafMfJOer9T0zSEUOI04igGpeW5Sz+bzoNku/Y84SA4b7Lsvf5EvhEDZflQ6ccTYDfN1ysBNlkGir1GK+wA=="
+
 # allow_anonymous = false
 # allow_unauthenticated = false
 # auth_redirect = "/"
 #
-[auth.facebook]
-id = "1051402744914844"
-secret = "39e5663bd183678445df9949144b46ce"
-#
-# [auth.google]
-# id = "00000000000-00000000000000000000000000000000.apps.googleusercontent.com"
-# secret = "000000000000000000000000"
-#
-# [auth.twitter]
-# id = "0000000000000000000000000"
-# secret = "00000000000000000000000000000000000000000000000000"
-#
-# [auth.github]
-# id = "00000000000000000000"
-# secret = "0000000000000000000000000000000000000000"
-#
-# [auth.twitch]
-# id = "0000000000000000000000000000000"
-# secret = "0000000000000000000000000000000"
