@@ -25,10 +25,9 @@ export function loginUserSuccess(token) {
 //   }
 // }
 
-export function loginUserRequest(provider) {
+export function loginUserRequest() {
   return {
-    type: LOGIN_USER_REQUEST,
-    provider
+    type: LOGIN_USER_REQUEST
   }
 }
 
@@ -46,12 +45,12 @@ export function logoutAndRedirect() {
     }
 }
 
-export function loginUserWithOAuthProvider(provider) {
+export function loginUserWithOAuthProvider() {
   return (dispatch, state) => {
-    dispatch(loginUserRequest(provider));
+    dispatch(loginUserRequest());
     // Browser will be redirected to OAuth URL associated with the provider
-    horizon.authEndpoint(provider).subscribe((endpoint) => {
-      window.location.pathname = endpoint;
+    horizon.authEndpoint("auth0").subscribe((endpoint) => {
+      window.location.replace(endpoint);
     });
   }
 }
