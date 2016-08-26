@@ -61,7 +61,7 @@
     "webpack-dev-server": "1.14.1"
   },
   "dependencies": {
-    "@horizon/client": "2.0.0-beta-6",
+    "@horizon/client": "2.0.0",
     "autoprefixer": "6.3.6",
     "classnames": "2.2.5",
     "history": "3.0.0",
