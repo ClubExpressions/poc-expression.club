@@ -3,7 +3,7 @@
   "description": "Application Web du Club des Expressions",
   "version": "0.1.0",
   "author": "Damien Lecan <dev@dlecan.com>",
-  "license": "APLv2",
+  "license": "Apache-2.0",
   "keywords": [],
   "repository": {
     "type": "git",
