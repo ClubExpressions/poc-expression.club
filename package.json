@@ -16,7 +16,7 @@
     "prestart": "node ./bin/clean.js",
     "start": "hz serve --dev --secure --key-file horizon-key.pem --cert-file horizon-cert.pem & webpack-dev-server --config ./config/webpack.config.dev.js --hot --inline --progress",
     "prebuild": "npm run clean:build && npm run build:html",
-    "build": "set NODE_ENV=production& NODE_ENV=production& webpack -p --config ./config/webpack.config.prod.js --progress",
+    "build": "cross-env NODE_ENV=production & cross-env NODE_ENV=production & webpack -p --config ./config/webpack.config.prod.js --progress",
     "lint": "eslint config src/js/** --ext .js",
     "jscs": "jscs src/js/",
     "test": "mocha --compilers js:babel-core/register,css:./test/unit/cssNullCompiler.js --require ./test/unit/testHelper.js --recursive ./test/unit",
@@ -74,6 +74,7 @@
     "react-router-bootstrap": "0.23.0",
     "redux": "3.5.2",
     "redux-logger": "2.6.1",
+    "redux-router": "2.1.2",
     "redux-thunk": "2.1.0"
   }
 }
