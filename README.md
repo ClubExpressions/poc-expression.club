@@ -7,10 +7,10 @@
   - [x] RIA app + Horizon.io
   - [x] Hot reload
   - [x] Source map enabled
-- [x] Social authentication (Facebook)
-- [ ] Read anonymous data (list of colleges)
-- [ ] Persist personnal data (name, college)
-- [ ] Define notion of "admin"
+- [x] Social authentication (Facebook through OAuth0)
+- [ ] As a user, I want to see list of allowed colleges (read anonymous data)
+- [ ] As a user, I want to customize my personal data: "name" and "college" (persist personal data)
+- [x] Allow to log in as an admin
 - [ ] As an admin, list all registered users
 - [ ] As an admin, update data of one registered user
 
@@ -32,6 +32,16 @@ $ npm install
 * Build once for (ready for ***Production***):
   * `$ npm run build`
   * Open `build/index.html` through the local webserver
+
+## Log in as an admin
+
+```
+$ hz make-token admin
+eyJ0e...
+```
+
+Copy the generated token and paste it the URL of your browser: https://localhost:3000/?admin_token=eyJ0e... 
+(replace `eyJ0e...` by the previously copied token).
 
 ## Testing
 

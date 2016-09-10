@@ -9,7 +9,8 @@ import * as authActions from '../actions/AuthActions';
 @connect(
   (state) => {
     return {
-      isAuthenticated: state.auth.isAuthenticated
+      isAuthenticated: state.auth.isAuthenticated,
+      user: state.auth.user
     };
   },
   (dispatch) => {
@@ -20,7 +21,7 @@ export default class App extends Component {
 
   render () {
 
-    const {logoutAndRedirect, loginUserWithOAuthProvider, isAuthenticated} = this.props;
+    const {logoutAndRedirect, loginUserWithOAuthProvider, isAuthenticated, user} = this.props;
 
     return (
       <div>
@@ -34,12 +35,16 @@ export default class App extends Component {
             <LinkContainer to="/protected">
               <NavItem eventKey={1}>Contenu restreint</NavItem>
             </LinkContainer>
+            {isAuthenticated
+              ? <NavItem eventKey={2} href="#">Mon profil (id #{user.id})</NavItem>
+              : ''
+            }
             {!isAuthenticated
-              ? <NavItem eventKey={2} href="#" onClick={() => loginUserWithOAuthProvider()}>Entrer ou s'inscrire au Club</NavItem>
+              ? <NavItem eventKey={3} href="#" onClick={() => loginUserWithOAuthProvider()}>Entrer ou s'inscrire au Club</NavItem>
               : ''
             }
             {isAuthenticated
-              ? <NavItem eventKey={3} href='#' onClick={logoutAndRedirect}>Quitter le Club</NavItem>
+              ? <NavItem eventKey={4} href='#' onClick={logoutAndRedirect}>Quitter le Club</NavItem>
               : ''
             }
           </Nav>

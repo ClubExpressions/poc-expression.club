@@ -9,7 +9,7 @@ import { Router, browserHistory } from 'react-router';
 
 import routes from './routes';
 
-const store = configureStore();
+export const store = configureStore();
 const rootElement = document.getElementById('app');
 
 let ComponentEl;
