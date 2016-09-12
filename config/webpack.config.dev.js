@@ -82,6 +82,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, '../src'),
     port: 3000,
     https: true,
+    historyApiFallback: true,
     proxy: {
       '/horizon/*': {
         target: 'https://localhost:8181/',
