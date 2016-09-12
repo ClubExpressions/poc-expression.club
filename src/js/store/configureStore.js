@@ -3,6 +3,9 @@ import rootReducer from '../reducers';
 import { persistState } from 'redux-devtools';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
+import routes from '../routes';
+import {reduxReactRouter} from 'redux-router';
+import createHistory from 'history/lib/createBrowserHistory';
 
 const loggerMiddleware = createLogger();
 
@@ -29,6 +32,7 @@ export default function configureStore(initialState) {
 
       // Middleware we want to use in development
       middleware,
+      reduxReactRouter({routes, createHistory}),
       window.devToolsExtension ?
         window.devToolsExtension() :
         require('../containers/DevTools').default.instrument(),
@@ -37,7 +41,7 @@ export default function configureStore(initialState) {
       persistState(getDebugSessionKey())
     );
   } else {
-    enhancer = compose(applyMiddleware(...middlewares));
+    enhancer = compose(applyMiddleware(...middlewares), reduxReactRouter({routes, createHistory}));
   }
 
   const store = createStore(rootReducer, initialState, enhancer);
