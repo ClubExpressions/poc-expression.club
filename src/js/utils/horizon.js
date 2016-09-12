@@ -1,6 +1,7 @@
 import Horizon from '@horizon/client';
 import * as authActions from '../actions/AuthActions';
 import { store } from '../main';
+import { push } from 'redux-router';
 
 const horizon = Horizon(buildHorizonProps());
 
@@ -25,7 +26,12 @@ function buildHorizonProps() {
 if (horizon.hasAuthToken()) {
   horizon.currentUser().fetch().subscribe((user) => {
     console.log(JSON.stringify(user));
-     store.dispatch(authActions.loginUserSuccess(user));
+    store.dispatch(authActions.loginUserSuccess(user));
+
+    if (!user.registered) {
+      console.log("User is not fully registered");
+      store.dispatch(push("/users/" + user.id + "/register"));
+    }
   });
 }
 
