@@ -3,7 +3,6 @@
 import { LOGOUT_USER, LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS } from '../constants/ActionTypes';
 import horizon from '../utils/horizon';
 import { push } from 'redux-router';
-// import jwtDecode from 'jwt-decode';
 
 export function loginUserSuccess(user) {
   return {
@@ -41,7 +40,7 @@ export function logoutAndRedirect() {
     return (dispatch, state) => {
         horizon.disconnect();
         dispatch(logout());
-        dispatch(push(null, '/'));
+        dispatch(push('/'));
     }
 }
 
