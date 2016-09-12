@@ -36,7 +36,7 @@ export default class App extends Component {
               <NavItem eventKey={1}>Contenu restreint</NavItem>
             </LinkContainer>
             {isAuthenticated
-              ? <NavItem eventKey={2} href="#">Mon profil (id #{user.id})</NavItem>
+              ? <NavItem eventKey={2} href="#">Mon profil ({user.id})</NavItem>
               : ''
             }
             {!isAuthenticated
