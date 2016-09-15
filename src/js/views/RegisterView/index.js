@@ -12,11 +12,27 @@ import {connect} from 'react-redux';
 )
 export default class RegisterView extends React.Component {
 
-    getInitialState() {
-      return {
-        value: ''
-      };
-    }
+  static defaultProps = {
+    def_schools: [
+      {
+        code_etablissement: "",
+        name: "Chargement ..."
+      }
+    ],
+  }
+
+  static propTypes = {
+    /* school: React.PropTypes.string.isRequired, */
+  }
+
+  state = {
+    schools: this.props.def_schools,
+    value: "",
+  }
+
+  constructor(props) {
+    super(props);
+  };
 
     getValidationState() {
       // const length = this.state.value.length;
@@ -66,8 +82,9 @@ export default class RegisterView extends React.Component {
               <FormGroup controlId="formControlsSchool">
                 <ControlLabel>Sélectionnez votre établissement *</ControlLabel>
                 <FormControl componentClass="select" placeholder="select">
-                  <option value="select">Etablissement</option>
-                  <option value="other">Lycée Mandela, Nantes</option>
+                  {this.state.schools.map((school, i) => {
+                    return <option key="{i}" value={school.code_etablissement}>{school.name}</option>;
+                  })}
                 </FormControl>
               </FormGroup>
 
