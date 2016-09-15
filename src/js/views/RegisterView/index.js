@@ -2,37 +2,37 @@ import React from 'react';
 import {Link} from 'react-router';
 import {Button, Form, FormGroup, ControlLabel, FormControl, HelpBlock, Label} from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as registerActions from '../../actions/RegisterActions';
 
 @connect(
   (state) => {
     return {
-      user: state.auth.user
+      user: state.auth.user,
+      schools: state.register.schools
     };
+  },
+  (dispatch) => {
+    return bindActionCreators(Object.assign({}, registerActions), dispatch);
   }
 )
 export default class RegisterView extends React.Component {
-
-  static defaultProps = {
-    def_schools: [
-      {
-        code_etablissement: "",
-        name: "Chargement ..."
-      }
-    ],
-  }
 
   static propTypes = {
     /* school: React.PropTypes.string.isRequired, */
   }
 
   state = {
-    schools: this.props.def_schools,
     value: "",
   }
 
   constructor(props) {
     super(props);
   };
+
+  componentWillMount() {
+    this.props.registerLoadSchools();
+  }
 
     getValidationState() {
       // const length = this.state.value.length;
@@ -46,7 +46,7 @@ export default class RegisterView extends React.Component {
     }
 
     render() {
-        const {user} = this.props;
+        const {schools} = this.props;
 
         return (
           <div>
@@ -80,16 +80,16 @@ export default class RegisterView extends React.Component {
               </FormGroup>
 
               <FormGroup controlId="formControlsSchool">
-                <ControlLabel>Sélectionnez votre établissement *</ControlLabel>
+                <ControlLabel>Votre établissement cette année *</ControlLabel>
                 <FormControl componentClass="select" placeholder="select">
-                  {this.state.schools.map((school, i) => {
-                    return <option key="{i}" value={school.code_etablissement}>{school.name}</option>;
+                  {schools.map(school => {
+                    return <option key={school.id} value={school.id}>{school.name}</option>;
                   })}
                 </FormControl>
               </FormGroup>
 
               <FormGroup controlId="formControlsSchool">
-                <ControlLabel>Votre professeur de Mathématiques cette année *</ControlLabel>
+                <ControlLabel>Votre professeur de Mathématiques cette année dans cet établissement *</ControlLabel>
                 <FormControl componentClass="select" placeholder="select">
                   <option value="select">Professeur</option>
                   <option value="other">Christophe Gragnic</option>

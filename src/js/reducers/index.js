@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
+import {routerStateReducer} from 'redux-router';
 import friendList from './friendList';
 import auth from './auth';
-import {routerStateReducer} from 'redux-router';
+import register from "./register";
 
 const rootReducer = combineReducers({
-  auth,
   router: routerStateReducer,
+  auth,
+  register,
   friendList
 });
 
