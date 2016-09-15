@@ -42,10 +42,6 @@ module.exports = {
     chunkFilename: '[id].chunk.js',
     pathinfo: true
   },
-  stats: {
-    colors: true,
-    reasons: true
-  },
   resolve: {
     // We can now require('file') instead of require('file.jsx')
     extensions: ['', '.js', '.jsx', '.scss']
@@ -93,7 +89,17 @@ module.exports = {
         protocolRewrite: true,
         autoRewrite: true
       }
-    }
+    },
+    stats: {
+      colors: true,
+      reasons: true,
+      chunkModules: false,
+      chunks: false,
+      modules: false,
+      assets: false,
+      version: false,
+      hash: false,
+    },
   },
   devtool: 'cheap-module-eval-source-map',
 };
