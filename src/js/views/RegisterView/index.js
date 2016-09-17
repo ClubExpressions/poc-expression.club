@@ -9,7 +9,8 @@ import * as registerActions from '../../actions/RegisterActions';
   (state) => {
     return {
       user: state.auth.user,
-      schools: state.register.schools
+      schools: state.register.schools,
+      teachers: state.register.teachers,
     };
   },
   (dispatch) => {
@@ -28,6 +29,7 @@ export default class RegisterView extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleSchoolsChange = this.handleSchoolsChange.bind(this);
   };
 
   componentWillMount() {
@@ -45,8 +47,16 @@ export default class RegisterView extends React.Component {
       this.setState({ value: e.target.value });
     }
 
+    handleSchoolsChange(e) {
+      if (e && e.target && e.target.value) {
+        this.props.registerLoadTeachers(e.target.value);
+      } else {
+        this.props.registerReinitTeachers();
+      }
+    }
+
     render() {
-        const {schools} = this.props;
+        const {schools, teachers} = this.props;
 
         return (
           <div>
@@ -81,7 +91,7 @@ export default class RegisterView extends React.Component {
 
               <FormGroup controlId="formControlsSchool">
                 <ControlLabel>Votre établissement cette année *</ControlLabel>
-                <FormControl componentClass="select" placeholder="select">
+                <FormControl componentClass="select" placeholder="select" onChange={this.handleSchoolsChange}>
                   {schools.map(school => {
                     return <option key={school.id} value={school.id}>{school.name}</option>;
                   })}
@@ -89,12 +99,11 @@ export default class RegisterView extends React.Component {
               </FormGroup>
 
               <FormGroup controlId="formControlsSchool">
-                <ControlLabel>Votre professeur de Mathématiques cette année dans cet établissement *</ControlLabel>
+                <ControlLabel>Votre classe et professeur de Mathématiques cette année dans cet établissement *</ControlLabel>
                 <FormControl componentClass="select" placeholder="select">
-                  <option value="select">Professeur</option>
-                  <option value="other">Christophe Gragnic</option>
-                  <option value="other">Jean-Philippe Rouquès</option>
-                  <option value="other">Laetitia Valade</option>
+                  {teachers.map(teacher => {
+                    return <option key={teacher.id} value={teacher.id}>{teacher.firstname} {teacher.name}</option>;
+                  })}
                 </FormControl>
               </FormGroup>
 

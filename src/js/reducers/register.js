@@ -1,5 +1,7 @@
 import {createReducer} from '../utils';
+import {REGISTER_REINIT_TEACHERS} from '../constants/ActionTypes';
 import {REGISTER_LOAD_SCHOOLS_REQUEST, REGISTER_LOAD_SCHOOLS_SUCCESS, REGISTER_LOAD_SCHOOLS_FAILURE} from '../constants/ActionTypes';
+import {REGISTER_LOAD_TEACHERS_REQUEST, REGISTER_LOAD_TEACHERS_SUCCESS, REGISTER_LOAD_TEACHERS_FAILURE} from '../constants/ActionTypes';
 
 const DEFAULT_SCHOOLS_LOADING = [
   {
@@ -15,18 +17,46 @@ const DEFAULT_SCHOOLS_LOADED = [
   }
 ];
 
+const DEFAULT_TEACHERS_LOADING = [
+  {
+    id: "",
+    name: "Chargement ..."
+  }
+];
+
+const DEFAULT_TEACHERS_LOADED = [
+  {
+    id: "",
+    name: "Sélectionnez votre classe et votre professeur"
+  }
+];
+
+const initialTeachersState = {
+    teachers: DEFAULT_TEACHERS_LOADING,
+    teachersIsLoaded: false,
+    teachersIsLoading: false,
+    teachersStatusText: "",
+};
+
 const initialState = {
     schools: DEFAULT_SCHOOLS_LOADING,
     isLoaded: false,
     isLoading: false,
-    statusText: ""
+    statusText: "",
+    ...initialTeachersState
 };
 
 export default createReducer(initialState, {
     [REGISTER_LOAD_SCHOOLS_REQUEST]: (state, payload) => {
         return Object.assign({}, state, {
-            isLoading: true,
-            statusText: ""
+          schools: DEFAULT_SCHOOLS_LOADING,
+          isLoaded: false,
+          isLoading: true,
+          statusText: "",
+          teachers: DEFAULT_TEACHERS_LOADING,
+          teachersIsLoaded: false,
+          teachersIsLoading: false,
+          teachersStatusText: "",
         });
     },
     [REGISTER_LOAD_SCHOOLS_SUCCESS]: (state, payload) => {
@@ -44,10 +74,34 @@ export default createReducer(initialState, {
     },
     [REGISTER_LOAD_SCHOOLS_FAILURE]: (state, payload) => {
         return Object.assign({}, state, {
-            isAuthenticating: false,
-            isAuthenticated: false,
             schools: DEFAULT_SCHOOLS,
             statusText: "Loading error: " + payload.error
         });
+    },
+
+    [REGISTER_LOAD_TEACHERS_REQUEST]: (state, payload) => {
+        return Object.assign({}, state, {
+          teachers: DEFAULT_TEACHERS_LOADING,
+          teachersIsLoaded: false,
+          teachersIsLoading: true,
+          teachersStatusText: "",
+        });
+    },
+    [REGISTER_LOAD_TEACHERS_SUCCESS]: (state, payload) => {
+        return Object.assign({}, state, {
+            teachersIsLoading: false,
+            teachersIsLoaded: true,
+            teachers: DEFAULT_TEACHERS_LOADED.concat(payload.teachers),
+        });
+
+    },
+    [REGISTER_LOAD_TEACHERS_FAILURE]: (state, payload) => {
+        return Object.assign({}, state, {
+            schools: DEFAULT_TEACHERS_LOADING,
+            statusText: "Loading error: " + payload.error
+        });
+    },
+    [REGISTER_REINIT_TEACHERS]: (state, payload) => {
+        return Object.assign({}, state, initialTeachersState);
     }
 });
