@@ -4,3 +4,4 @@
 export { default as RoleAware } from './RoleAware';
 export { default as StudentDash } from './Users/StudentDash';
 export { default as AdminDash } from './Users/AdminDash';
+export { default as TeacherDash } from './Users/TeacherDash';
