@@ -3,3 +3,4 @@
 //export { default as Home } from './Home/Home';
 export { default as RoleAware } from './RoleAware';
 export { default as StudentDash } from './Users/StudentDash';
+export { default as AdminDash } from './Users/AdminDash';

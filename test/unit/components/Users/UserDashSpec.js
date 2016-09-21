@@ -1,15 +1,21 @@
 import { renderComponent, expect } from '../../testHelper';
-import StudentDash from '../../../../src/js/components/Users/StudentDash';
+import {StudentDash, AdminDash} from '../../../../src/js/components';
 
 let tested = {
   student: {
     componentObj: StudentDash,
     componentName: "StudentDash",
     group: "students",
-  }
+  },
+  admin: {
+    componentObj: AdminDash,
+    componentName: "AdminDash",
+    group: "admin",
+  },
 }
 
 describeTest(tested.student);
+describeTest(tested.admin);
 
 function describeTest(tested) {
 
