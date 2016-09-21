@@ -29,11 +29,7 @@ if (horizon.hasAuthToken()) {
     console.log(JSON.stringify(user));
     store.dispatch(authActions.loginUserSuccess(user));
 
-    if (!user.registered) {
-      console.log("User is not fully registered");
-      // store.dispatch(push("/users/" + user.id + "/register"));
-      browserHistory.push("/users/" + user.id + "/register");
-    }
+    browserHistory.push("/users/" + user.id);
   });
 }
 

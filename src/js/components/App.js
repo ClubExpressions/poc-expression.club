@@ -29,7 +29,7 @@ export default class App extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               {isAuthenticated
-                ? <Link to={`/users/${user.id}/`}>Accueil</Link>
+                ? <Link to={`/users/${user.id}`}>Accueil</Link>
                 : <Link to="/">Accueil</Link>
               }
             </Navbar.Brand>
