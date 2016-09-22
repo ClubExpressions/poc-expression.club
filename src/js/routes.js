@@ -24,7 +24,6 @@ export default (
 
     <Route component={AuthView} onEnter={requireAuth}>
       <Route path="users/:userId" component={UserHomeView} />
-      <Route path="users/:userId/register" component={RegisterView} />
     </Route>
     <Redirect from="*" to="404" />
   </Route>
