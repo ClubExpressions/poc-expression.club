@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {RoleAware} from '../../components'
+import {Alert} from 'react-bootstrap';
 
 @connect(
   (state) => {
@@ -23,7 +24,7 @@ export default class StudentDash extends RoleAware {
     return this.renderWithRole(() => {
       return (
         <div className="studentRole">
-          <p>Je suis un composant visible uniquement par les élèves.</p>
+          <Alert bsStyle="info">Je suis un composant visible uniquement par les élèves.</Alert>
         </div>
       );
     });
