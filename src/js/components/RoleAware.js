@@ -8,6 +8,7 @@ export default class RoleAware extends React.Component {
 
   renderWithRole(render) {
     if (typeof this.authorizedRoles === "function"
+      && this.props.user
       && this.checkIntersectionNotEmpty(this.authorizedRoles(), this.props.user.groups)) {
       return render();
     } else {
