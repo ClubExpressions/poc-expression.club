@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {Button, Form, FormGroup, ControlLabel, FormControl, HelpBlock, Label} from 'react-bootstrap';
+import {Button, Form, FormGroup, ControlLabel, FormControl, HelpBlock, Alert} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as registerActions from '../../actions/RegisterActions';
@@ -61,7 +61,8 @@ export default class RegisterView extends React.Component {
         return (
           <div>
             <h2>Votre profil est incomplet, merci de compléter les informations suivantes.</h2>
-            <h3><Label bsStyle="warning">Vous ne pourrez pas utiliser le Club des Expressions tant que votre profil ne sera complet.</Label></h3>
+            <h3><Alert bsStyle="warning">Vous ne pourrez pas utiliser le Club des Expressions
+            tant que votre profil ne sera pas complet.</Alert></h3>
             <Form>
               <FormGroup
                 controlId="FormControlName"
