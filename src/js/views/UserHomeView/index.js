@@ -14,7 +14,8 @@ import RegisterView from '../RegisterView';
 export default class UserHomeView extends React.Component {
 
   state = {
-    showRegisteringModal: !this.props.user.registered
+    showRegisteringModal: this.props.user
+                          && !this.props.user.registered
                           && this.props.user.groups.indexOf("students") > -1,
   }
 
