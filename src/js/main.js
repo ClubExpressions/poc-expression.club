@@ -4,12 +4,10 @@ import '../styles/styles.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore  from './store/configureStore';
+import store from './store/configureStore';
 import { Router, browserHistory } from 'react-router';
-
 import routes from './routes';
 
-export const store = configureStore();
 const rootElement = document.getElementById('app');
 
 let ComponentEl;

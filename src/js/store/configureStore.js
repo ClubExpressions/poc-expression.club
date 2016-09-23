@@ -9,7 +9,9 @@ import createHistory from 'history/lib/createBrowserHistory';
 
 const loggerMiddleware = createLogger();
 
-export default function configureStore(initialState) {
+const store = configureStore();
+
+function configureStore(initialState) {
 
   let middlewares = [
     thunkMiddleware,
@@ -55,3 +57,5 @@ export default function configureStore(initialState) {
 
   return store;
 }
+
+export default store;
