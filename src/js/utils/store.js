@@ -37,7 +37,7 @@ function configureStore(initialState) {
       reduxReactRouter({routes, createHistory}),
       window.devToolsExtension ?
         window.devToolsExtension() :
-        require('../containers/DevTools').default.instrument(),
+        require('../utils/DevTools').default.instrument(),
 
       // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
       persistState(getDebugSessionKey())

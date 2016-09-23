@@ -4,7 +4,7 @@ import '../styles/styles.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './store/configureStore';
+import store from './utils/store';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 
@@ -13,7 +13,7 @@ const rootElement = document.getElementById('app');
 let ComponentEl;
 
 if (process.env.NODE_ENV !== 'production') {
-  const DevTools = require('./containers/DevTools').default;
+  const DevTools = require('./utils/DevTools').default;
 
   // If using routes
   ComponentEl = (
