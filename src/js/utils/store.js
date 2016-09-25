@@ -4,8 +4,8 @@ import { persistState } from 'redux-devtools';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import routes from '../routes';
-import {reduxReactRouter} from 'redux-router';
-import createHistory from 'history/lib/createBrowserHistory';
+import { browserHistory } from 'react-router';
+import { routerMiddleware } from 'react-router-redux';
 
 const loggerMiddleware = createLogger();
 
@@ -15,14 +15,14 @@ function configureStore(initialState) {
 
   let middlewares = [
     thunkMiddleware,
-    loggerMiddleware
+    loggerMiddleware,
+    routerMiddleware(browserHistory),
   ];
   let enhancer;
 
   if (process.env.NODE_ENV !== 'production') {
 
-    let middlewareReduxImmutableStateInvariant = require('redux-immutable-state-invariant')();
-    let middleware = applyMiddleware(...middlewares, middlewareReduxImmutableStateInvariant);
+    middlewares.push(require('redux-immutable-state-invariant')());
 
     let getDebugSessionKey = function () {
       // By default we try to read the key from ?debug_session=<key> in the address bar
@@ -31,10 +31,7 @@ function configureStore(initialState) {
     };
 
     enhancer = compose(
-
-      // Middleware we want to use in development
-      middleware,
-      reduxReactRouter({routes, createHistory}),
+      applyMiddleware(...middlewares),
       window.devToolsExtension ?
         window.devToolsExtension() :
         require('../utils/DevTools').default.instrument(),
@@ -43,7 +40,7 @@ function configureStore(initialState) {
       persistState(getDebugSessionKey())
     );
   } else {
-    enhancer = compose(applyMiddleware(...middlewares), reduxReactRouter({routes, createHistory}));
+    enhancer = applyMiddleware(...middlewares);
   }
 
   const store = createStore(rootReducer, initialState, enhancer);

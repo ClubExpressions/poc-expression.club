@@ -6,7 +6,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux'
 import routes from './routes';
+
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store)
 
 const rootElement = document.getElementById('app');
 
@@ -18,14 +22,14 @@ if (process.env.NODE_ENV !== 'production') {
   // If using routes
   ComponentEl = (
     <div>
-      <Router history={browserHistory} routes={routes} />
+      <Router history={history} routes={routes} />
       <DevTools />
     </div>
   );
 } else {
   ComponentEl = (
     <div>
-      <Router history={browserHistory} routes={routes} />
+      <Router history={history} routes={routes} />
     </div>
   );
 }

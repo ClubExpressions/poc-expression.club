@@ -1,7 +1,7 @@
 import Horizon from '@horizon/client';
 import * as authActions from '../actions/AuthActions';
 import store from './store';
-// import { push } from 'redux-router';
+import { push } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
 const horizon = Horizon(buildHorizonProps());
@@ -29,7 +29,8 @@ if (horizon.hasAuthToken()) {
     console.log(JSON.stringify(user));
     store.dispatch(authActions.loginUserSuccess(user));
 
-    browserHistory.push("/users/" + user.id);
+    // browserHistory.push("/users/" + user.id);
+    store.dispatch(push("/users/" + user.id));
   });
 }
 
