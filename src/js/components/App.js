@@ -19,6 +19,11 @@ import * as authActions from '../actions/AuthActions';
 )
 export default class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.props.loadUserIfPossible();
+  }
+
   render () {
 
     const {logoutAndRedirect, loginUserWithOAuthProvider, isAuthenticated, user} = this.props;

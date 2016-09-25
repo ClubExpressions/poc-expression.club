@@ -2,7 +2,6 @@ import Horizon from '@horizon/client';
 import * as authActions from '../actions/AuthActions';
 import store from './store';
 import { push } from 'react-router-redux';
-import { browserHistory } from 'react-router';
 
 const horizon = Horizon(buildHorizonProps());
 
@@ -22,16 +21,6 @@ function buildHorizonProps() {
       authType: 'token'
     };
   }
-}
-
-if (horizon.hasAuthToken()) {
-  horizon.currentUser().fetch().subscribe((user) => {
-    console.log(JSON.stringify(user));
-    store.dispatch(authActions.loginUserSuccess(user));
-
-    // browserHistory.push("/users/" + user.id);
-    store.dispatch(push("/users/" + user.id));
-  });
 }
 
 function disconnect() {
