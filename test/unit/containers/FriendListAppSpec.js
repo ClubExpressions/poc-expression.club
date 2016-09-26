@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../testHelper';
-import FriendListApp from '../../../src/js/containers/FriendListApp/FriendListApp';
+import FriendListApp from '../../../src/js/components/FriendListApp/FriendListApp';
 
 // describe('FriendListApp', () => {
 
