@@ -13,7 +13,7 @@ function buildHorizonProps() {
     return {
         authType: {
             token: adminToken,
-            storeLocally: false
+            storeLocally: true
         }
     };
   } else {
