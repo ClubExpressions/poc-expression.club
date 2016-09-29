@@ -2,6 +2,7 @@ import horizon from '../utils/horizon';
 import {REGISTER_REINIT_TEACHERS} from '../constants/ActionTypes';
 import {REGISTER_LOAD_SCHOOLS_REQUEST, REGISTER_LOAD_SCHOOLS_SUCCESS, REGISTER_LOAD_SCHOOLS_FAILURE} from '../constants/ActionTypes';
 import {REGISTER_LOAD_TEACHERS_REQUEST, REGISTER_LOAD_TEACHERS_SUCCESS, REGISTER_LOAD_TEACHERS_FAILURE} from '../constants/ActionTypes';
+import {REGISTER_SAVE_USER_REQUEST, REGISTER_SAVE_USER_SUCCESS, REGISTER_SAVE_USER_FAILURE} from '../constants/ActionTypes';
 
 export function registerReinitTeachersState() {
   return {
@@ -84,6 +85,44 @@ export function registerLoadTeachers(schoolId) {
     horizon("teachers").findAll({school_id: schoolId}).order("name").fetch().subscribe(
       teachers => dispatch(registerLoadTeachersSuccess(teachers)),
       error => dispatch(registerLoadTeachersFailure(error))
+    );
+  }
+}
+
+export function registerSaveUserRequest(user) {
+  return {
+    type: REGISTER_SAVE_USER_REQUEST,
+    payload: {
+      user: user
+    }
+  }
+}
+
+export function registerSaveUserSuccess() {
+  return {
+    type: REGISTER_SAVE_USER_SUCCESS,
+  }
+}
+
+export function registerSaveUserError(error) {
+  return {
+    type: REGISTER_SAVE_USER_FAILURE,
+    payload: {
+      error: error
+    }
+  }
+}
+
+export function registerSaveUser(user, onSuccess) {
+  return (dispatch, state) => {
+    dispatch(registerSaveUserRequest(user));
+
+    horizon("users").replace(user).subscribe(
+      id => {
+        dispatch(registerSaveUserSuccess());
+        onSuccess();
+      },
+      error => dispatch(registerSaveUserError(error))
     );
   }
 }

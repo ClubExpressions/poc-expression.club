@@ -2,6 +2,7 @@ import {createReducer} from '../utils';
 import {REGISTER_REINIT_TEACHERS} from '../constants/ActionTypes';
 import {REGISTER_LOAD_SCHOOLS_REQUEST, REGISTER_LOAD_SCHOOLS_SUCCESS, REGISTER_LOAD_SCHOOLS_FAILURE} from '../constants/ActionTypes';
 import {REGISTER_LOAD_TEACHERS_REQUEST, REGISTER_LOAD_TEACHERS_SUCCESS, REGISTER_LOAD_TEACHERS_FAILURE} from '../constants/ActionTypes';
+import {REGISTER_SAVE_USER_REQUEST, REGISTER_SAVE_USER_SUCCESS, REGISTER_SAVE_USER_FAILURE} from '../constants/ActionTypes';
 
 const DEFAULT_SCHOOLS_LOADING = [
   {
@@ -100,5 +101,14 @@ export default createReducer(initialState, {
   },
   [REGISTER_REINIT_TEACHERS]: (state, payload) => {
     return Object.assign({}, state, initialTeachersState);
-  }
+  },
+  [REGISTER_SAVE_USER_REQUEST]: (state, payload) => {
+    return Object.assign({}, state, {});
+  },
+  [REGISTER_SAVE_USER_SUCCESS]: (state, payload) => {
+    return Object.assign({}, state, {});
+  },
+  [REGISTER_SAVE_USER_FAILURE]: (state, payload) => {
+    return Object.assign({}, state, {});
+  },
 });
