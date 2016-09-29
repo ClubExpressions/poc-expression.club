@@ -1,15 +1,16 @@
 import React, { Component, PropTypes } from 'react';
-import {Navbar, NavBrand, Nav, NavItem} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
-import {Link} from 'react-router';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { Navbar, NavBrand, Nav, NavItem, Modal } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import {  Link } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as authActions from '../actions/AuthActions';
 
 @connect(
   (state) => {
     return {
       isAuthenticated: state.auth.isAuthenticated,
+      isLoading: state.auth.isLoading,
       user: state.auth.user
     };
   },
@@ -30,6 +31,11 @@ export default class App extends Component {
 
     return (
       <div>
+        <Modal show={this.props.isLoading} bsSize="small">
+          <Modal.Body>
+            <b>Connexion ...</b>
+          </Modal.Body>
+        </Modal>
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
