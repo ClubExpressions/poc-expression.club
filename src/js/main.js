@@ -1,7 +1,7 @@
 import '../styles/bootstrap.min.css';
 import '../styles/styles.scss';
 
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './utils/store';
@@ -11,8 +11,6 @@ import routes from './routes';
 
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store)
-
-const rootElement = document.getElementById('app');
 
 let ComponentEl;
 
@@ -34,10 +32,12 @@ if (process.env.NODE_ENV !== 'production') {
   );
 }
 
-// Render the React application to the DOM
-ReactDOM.render(
-  <Provider store={store}>
-    {ComponentEl}
-  </Provider>,
-  rootElement
-);
+export default class Main extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+          {ComponentEl}
+      </Provider>
+    );
+  }
+}

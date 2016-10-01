@@ -2,6 +2,19 @@ const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
+const server = {
+  host: 'localhost',
+  port: 3000,
+};
+
+const publicPath = 'https://' + server.host + ':' + server.port;
+
+const hmrConfig = [
+  'react-hot-loader/patch',
+  'webpack-dev-server/client?' + publicPath,
+  'webpack/hot/only-dev-server'
+];
+
 // App files location
 const PATHS = {
   app: path.resolve(__dirname, '../src/js'),
@@ -10,6 +23,7 @@ const PATHS = {
 };
 
 const plugins = [
+  new webpack.HotModuleReplacementPlugin(),
   // Shared code
   new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.bundle.js'),
   // Avoid publishing files when compilation fails
@@ -31,8 +45,14 @@ const sassLoaders = [
 module.exports = {
   env : process.env.NODE_ENV,
   entry: {
-    app: path.resolve(PATHS.app, 'main.js'),
-    vendor: ['react']
+    app: [
+      ...hmrConfig,
+      path.resolve(PATHS.app, 'index.js')
+    ],
+    vendor: [
+      ...hmrConfig,
+      'react'
+    ]
   },
   output: {
     path: PATHS.build,
@@ -75,8 +95,9 @@ module.exports = {
     })];
   },
   devServer: {
+    hot: true,
     contentBase: path.resolve(__dirname, '../src'),
-    port: 3000,
+    port: server.port,
     https: true,
     historyApiFallback: true,
     proxy: {
@@ -93,12 +114,13 @@ module.exports = {
     stats: {
       colors: true,
       reasons: true,
-      chunkModules: false,
+      chunkModules: true,
+      assets: true,
+      version: true,
+      hash: false,
+      // Verbose options
       chunks: false,
       modules: false,
-      assets: false,
-      version: false,
-      hash: false,
     },
   },
   devtool: 'cheap-module-eval-source-map',

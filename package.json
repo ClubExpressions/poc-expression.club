@@ -14,7 +14,7 @@
     "clean:build": "node ./bin/clean.js createdir",
     "build:html": "node ./bin/buildHtml.js",
     "prestart": "node ./bin/clean.js",
-    "start": "hz serve --dev --secure --key-file horizon-key.pem --cert-file horizon-cert.pem & webpack-dev-server --config ./config/webpack.config.dev.js --hot --inline --progress",
+    "start": "hz serve --dev --secure --key-file horizon-key.pem --cert-file horizon-cert.pem & webpack-dev-server --config ./config/webpack.config.dev.js --progress",
     "prebuild": "npm run clean:build && npm run build:html",
     "build": "cross-env NODE_ENV=production & cross-env NODE_ENV=production & webpack -p --config ./config/webpack.config.prod.js --progress",
     "lint": "eslint config src/js/** --ext .js",
@@ -47,7 +47,6 @@
     "node-sass": "3.9.0",
     "postcss-loader": "0.11.1",
     "react-addons-test-utils": "15.3.1",
-    "react-hot-loader": "3.0.0-beta.3",
     "redux-devtools": "3.3.1",
     "redux-devtools-dock-monitor": "1.1.1",
     "redux-devtools-log-monitor": "1.0.11",
@@ -57,8 +56,8 @@
     "sass-loader": "4.0.1",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
-    "webpack": "1.13.2",
-    "webpack-dev-server": "1.15.1"
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "1.16.1"
   },
   "dependencies": {
     "@horizon/client": "2.0.0",
@@ -69,6 +68,7 @@
     "react": "15.3.1",
     "react-bootstrap": "0.30.3",
     "react-dom": "15.3.1",
+    "react-hot-loader": "3.0.0-beta.5",
     "react-redux": "4.4.5",
     "react-router": "2.7.0",
     "react-router-bootstrap": "0.23.1",
