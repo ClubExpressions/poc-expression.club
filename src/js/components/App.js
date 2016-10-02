@@ -29,6 +29,8 @@ export default class App extends Component {
 
     const {logoutAndRedirect, loginUserWithOAuthProvider, isAuthenticated, user} = this.props;
 
+    const homeLink = isAuthenticated ? `/users/${user.id}` : "/";
+
     return (
       <div>
         <Modal show={this.props.isLoading} bsSize="small">
@@ -39,27 +41,18 @@ export default class App extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              {isAuthenticated
-                ? <Link to={`/users/${user.id}`}>Accueil</Link>
-                : <Link to="/">Accueil</Link>
-              }
+              <Link to={homeLink}>Accueil</Link>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <LinkContainer to="/protected">
-              <NavItem eventKey={1}>Contenu restreint</NavItem>
-            </LinkContainer>
             {isAuthenticated
               ? <NavItem eventKey={2} href="#">Mon profil ({user.id})</NavItem>
               : ''
             }
-            {!isAuthenticated
-              ? <NavItem eventKey={3} href="#" onClick={() => loginUserWithOAuthProvider()}>Entrer ou s'inscrire au Club</NavItem>
-              : ''
-            }
+
             {isAuthenticated
-              ? <NavItem eventKey={4} href='#' onClick={logoutAndRedirect}>Quitter le Club</NavItem>
-              : ''
+              ? <NavItem eventKey={1} href='#' onClick={logoutAndRedirect}>Quitter le Club</NavItem>
+              : <NavItem eventKey={1} href="#" onClick={loginUserWithOAuthProvider}>Entrer ou s'inscrire au Club</NavItem>
             }
           </Nav>
         </Navbar>
