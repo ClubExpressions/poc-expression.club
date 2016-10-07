@@ -18,9 +18,9 @@ export default class UserHome extends React.Component {
       <div>
         <h1>Bienvenue au Club !</h1>
         <Register></Register>
-        <AdminDash></AdminDash>
-        <TeacherDash></TeacherDash>
-        <StudentDash></StudentDash>
+        <AdminDash user={this.props.user}></AdminDash>
+        <TeacherDash user={this.props.user}></TeacherDash>
+        <StudentDash user={this.props.user}></StudentDash>
       </div>
     );
   }

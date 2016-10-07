@@ -1,15 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {RoleAware} from '../../components'
 import {Alert} from 'react-bootstrap';
 
-@connect(
-  (state) => {
-    return {
-      user: state.auth.user,
-    };
-  },
-)
 export default class TeacherDash extends RoleAware {
 
   constructor(props) {

@@ -34,7 +34,7 @@ function describeTest(tested) {
     describe("when user is authorized", () => {
 
       beforeEach(() => {
-        component = renderComponent(componentObj, {}, createState(group));
+        component = renderComponent(componentObj, createProps(group), {});
       });
 
       it('component is visible', () => {
@@ -45,7 +45,7 @@ function describeTest(tested) {
     describe("when user is not authorized", () => {
 
       beforeEach(() => {
-        component = renderComponent(componentObj, {}, createState("truc"));
+        component = renderComponent(componentObj, createProps("truc"), {});
       });
 
       it("component is not visible", () => {
@@ -57,12 +57,10 @@ function describeTest(tested) {
 
 }
 
-function createState(group) {
+function createProps(group) {
   return {
-    auth: {
-      user: {
-        groups: ["default", group]
-      }
+    user: {
+      groups: ["default", group]
     }
   };
 }
