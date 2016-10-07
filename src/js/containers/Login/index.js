@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 // import reactMixin from 'react-mixin';
 // import * as actionCreators from '../actions';
 
-export default class LoginView extends Component {
+export default class Login extends Component {
 
 //   constructor(props) {
 //     super(props);

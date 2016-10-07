@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import {Jumbotron, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 
-export default class HomeView extends React.Component {
+export default class Home extends React.Component {
 
     render () {
         return (

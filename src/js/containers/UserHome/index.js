@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {StudentDash, AdminDash, TeacherDash} from '../../components';
-import RegisterView from '../RegisterView';
+import Register from '../Register';
 
 @connect(
   (state) => {
@@ -10,14 +10,14 @@ import RegisterView from '../RegisterView';
     };
   },
 )
-export default class UserHomeView extends React.Component {
+export default class UserHome extends React.Component {
 
   render() {
 
     return (
       <div>
         <h1>Bienvenue au Club !</h1>
-        <RegisterView></RegisterView>
+        <Register></Register>
         <AdminDash></AdminDash>
         <TeacherDash></TeacherDash>
         <StudentDash></StudentDash>

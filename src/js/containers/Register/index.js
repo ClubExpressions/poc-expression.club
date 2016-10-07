@@ -24,7 +24,7 @@ import { push } from 'react-router-redux';
     };
   }
 )
-export default class RegisterView extends React.Component {
+export default class Register extends React.Component {
 
   static propTypes = {
     /* school: React.PropTypes.string.isRequired, */

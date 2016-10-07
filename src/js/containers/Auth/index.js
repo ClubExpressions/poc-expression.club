@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class AuthView extends React.Component {
+export default class Auth extends React.Component {
 
     render () {
 
