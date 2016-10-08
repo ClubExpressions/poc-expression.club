@@ -1,5 +1,4 @@
 import Horizon from '@horizon/client';
-import * as authActions from '../actions/AuthActions';
 import store from './store';
 import { push } from 'react-router-redux';
 

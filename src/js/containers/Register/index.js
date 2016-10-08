@@ -9,22 +9,22 @@ import * as authActions from '../../actions/AuthActions';
 import config from '../../utils/config';
 import { push } from 'react-router-redux';
 
-@connect(
-  (state) => {
-    return {
-      user: state.auth.user,
-      schools: state.register.schools,
-      teachers: state.register.teachers,
-    };
-  },
-  (dispatch) => {
-    return {
-      ...bindActionCreators(Object.assign({}, authActions), dispatch),
-      ...bindActionCreators(Object.assign({}, registerActions), dispatch),
-    };
-  }
-)
-export default class Register extends React.Component {
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.user,
+    schools: state.register.schools,
+    teachers: state.register.teachers,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    ...bindActionCreators(Object.assign({}, authActions), dispatch),
+    ...bindActionCreators(Object.assign({}, registerActions), dispatch),
+  };
+};
+
+export class Register extends React.Component {
 
   static propTypes = {
     /* school: React.PropTypes.string.isRequired, */
@@ -95,6 +95,10 @@ export default class Register extends React.Component {
     this.setState({saving: true});
     let user = {
       ...this.props.user,
+      groups: [
+        'students',
+        ...this.props.user.groups,
+      ],
       name: this.state.name,
       firstname: this.state.firstname,
       schoolYears: {}
@@ -107,12 +111,23 @@ export default class Register extends React.Component {
   }
 
   showRegisteringModal() {
-    return this.props.user
-      && this.props.user.groups.indexOf("students") > -1
-      && !(
-        this.props.user.hasOwnProperty('schoolYears')
-        && this.props.user.schoolYears.hasOwnProperty(config.currentSchoolYear)
+    let user = this.props.user;
+    let result =
+      // Is not a teacher or an admin
+      !(
+        user.hasOwnProperty('groups')
+        && (
+          user.groups.indexOf('teachers') > -1
+          || user.groups.indexOf('admin') > -1
+        )
+      )
+      &&
+      // no current school year configured
+      !(
+        user.hasOwnProperty('schoolYears')
+        && user.schoolYears.hasOwnProperty(config.currentSchoolYear)
       );
+      return result;
   }
 
   render() {
@@ -134,19 +149,6 @@ export default class Register extends React.Component {
           tant que votre profil ne sera pas complet.</Alert></h3>
           <Form>
             <FormGroup
-              controlId="FormControlName"
-              validationState={this.getValidationState()}
-            >
-              <ControlLabel>Votre nom *</ControlLabel>
-              <FormControl
-                type="text"
-                placeholder="Votre nom"
-                onChange={this.handleNameChange}
-              />
-              <FormControl.Feedback />
-            </FormGroup>
-
-            <FormGroup
               controlId="FormControlFirstName"
               validationState={this.getValidationState()}
             >
@@ -155,6 +157,19 @@ export default class Register extends React.Component {
                 type="text"
                 placeholder="Votre prénom"
                 onChange={this.handleFirstnameChange}
+              />
+              <FormControl.Feedback />
+            </FormGroup>
+
+            <FormGroup
+              controlId="FormControlName"
+              validationState={this.getValidationState()}
+            >
+              <ControlLabel>Votre nom *</ControlLabel>
+              <FormControl
+                type="text"
+                placeholder="Votre nom"
+                onChange={this.handleNameChange}
               />
               <FormControl.Feedback />
             </FormGroup>
@@ -191,3 +206,5 @@ export default class Register extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
