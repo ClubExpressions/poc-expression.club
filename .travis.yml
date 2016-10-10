@@ -10,7 +10,7 @@ cache:
     - node_modules
 
 install:
-  - npm install -g horizon webpack cross-env
+  - npm install -g horizon
   - npm install
 
 script:

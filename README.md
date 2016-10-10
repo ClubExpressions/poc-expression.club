@@ -19,7 +19,7 @@
 ```
 $ git clone git@github.com:ClubExpressions/poc-expression.club
 $ cd poc-expression.club
-$ npm install -g horizon webpack cross-env (as "root" on Linux/OS X)
+$ npm install -g horizon (as "root" on Linux/OS X)
 $ npm install
 ```
 
