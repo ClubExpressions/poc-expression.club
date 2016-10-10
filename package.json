@@ -42,6 +42,7 @@
     "eslint-plugin-react": "6.2.0",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.9.0",
+    "horizon": "2.0.0",
     "jquery": "3.1.0",
     "jscs": "3.0.7",
     "jsdom": "9.5.0",
