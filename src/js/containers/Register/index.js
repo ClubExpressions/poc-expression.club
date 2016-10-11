@@ -179,7 +179,13 @@ export class Register extends React.Component {
               <ControlLabel>Année scolaire {config.currentSchoolYearLabel} - Votre établissement *</ControlLabel>
               <FormControl componentClass="select" placeholder="select" onChange={this.handleSchoolsChange}>
                 {schools.map(school => {
-                  return <option key={school.id} value={school.id}>{school.name}</option>;
+                  return <option key={school.id} value={school.id}>
+                    {school.code
+                      ? school.code + ' - '
+                      : ''
+                    }
+                    {school.name}
+                  </option>;
                 })}
               </FormControl>
             </FormGroup>

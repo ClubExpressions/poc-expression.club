@@ -64,12 +64,7 @@ export default createReducer(initialState, {
     return Object.assign({}, state, {
       isLoading: false,
       isLoaded: true,
-      schools: DEFAULT_SCHOOLS_LOADED.concat(payload.schools.map(school => {
-        return {
-          id: school.id,
-          name: school.code + " - " + school.name,
-        };
-      })),
+      schools: DEFAULT_SCHOOLS_LOADED.concat(payload.schools),
     });
   },
   [REGISTER_LOAD_SCHOOLS_FAILURE]: (state, payload) => {
