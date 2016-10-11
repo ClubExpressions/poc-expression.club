@@ -10,9 +10,8 @@
 - [x] Social authentication (Facebook through OAuth0)
 - [x] As a user, I want to see list of allowed colleges
 - [x] As a user, I want to customize my personal data: "name" and "college" (persist personal data)
-- [x] Allow to log in as an admin
-- [ ] As an admin, list all registered users
-- [ ] As an admin, update data of one registered user
+- [x] As an admin, I want to be able to log in
+- [x] As an teacher, I want to be able to log in
 
 ## Installation
 
