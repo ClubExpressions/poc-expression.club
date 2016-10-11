@@ -8,8 +8,8 @@
   - [x] Hot reload
   - [x] Source map enabled
 - [x] Social authentication (Facebook through OAuth0)
-- [ ] As a user, I want to see list of allowed colleges (read anonymous data)
-- [ ] As a user, I want to customize my personal data: "name" and "college" (persist personal data)
+- [x] As a user, I want to see list of allowed colleges
+- [x] As a user, I want to customize my personal data: "name" and "college" (persist personal data)
 - [x] Allow to log in as an admin
 - [ ] As an admin, list all registered users
 - [ ] As an admin, update data of one registered user
