@@ -67,7 +67,7 @@ export default createReducer(initialState, {
       schools: DEFAULT_SCHOOLS_LOADED.concat(payload.schools.map(school => {
         return {
           id: school.id,
-          name: school.school_code + " - " + school.name,
+          name: school.code + " - " + school.name,
         };
       })),
     });

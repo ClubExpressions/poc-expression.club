@@ -44,7 +44,7 @@ export function registerLoadSchools() {
   return (dispatch, state) => {
     dispatch(registerLoadSchoolsRequest());
 
-    horizon("schools").order("school_code").fetch().subscribe(
+    horizon("schools").order("code").fetch().subscribe(
       schools => dispatch(registerLoadSchoolsSuccess(schools)),
       error => dispatch(registerLoadSchoolsFailure(error))
     );
