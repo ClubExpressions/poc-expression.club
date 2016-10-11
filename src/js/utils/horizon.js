@@ -5,13 +5,13 @@ import { push } from 'react-router-redux';
 const horizon = Horizon(buildHorizonProps());
 
 function buildHorizonProps() {
-  var adminToken = getQueryVariable("admin_token");
+  var token = getQueryVariable("token");
 
-  if (adminToken) {
-    console.log("Admin token found: ", adminToken);
+  if (token) {
+    console.log("Auth token found: ", token);
     return {
         authType: {
-            token: adminToken,
+            token: token,
             storeLocally: true
         }
     };
