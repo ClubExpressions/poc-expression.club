@@ -112,23 +112,27 @@ export class Register extends React.Component {
   }
 
   showRegisteringModal() {
-    let user = this.props.user;
-    let result =
-      // Is not a teacher or an admin
-      !(
-        user.hasOwnProperty('groups')
-        && (
-          user.groups.indexOf('teachers') > -1
-          || user.groups.indexOf('admin') > -1
+    let result = false;
+
+    if (this.props.hasOwnProperty('user') && this.props.user) {
+      let user = this.props.user;
+      result =
+        // Is not a teacher or an admin
+        !(
+          user.hasOwnProperty('groups')
+          && (
+            user.groups.indexOf('teachers') > -1
+            || user.groups.indexOf('admin') > -1
+          )
         )
-      )
-      &&
-      // no current school year configured
-      !(
-        user.hasOwnProperty('schoolYears')
-        && user.schoolYears.hasOwnProperty(config.currentSchoolYear)
-      );
-      return result;
+        &&
+        // no current school year configured
+        !(
+          user.hasOwnProperty('schoolYears')
+          && user.schoolYears.hasOwnProperty(config.currentSchoolYear)
+        );
+      }
+    return result;
   }
 
   render() {

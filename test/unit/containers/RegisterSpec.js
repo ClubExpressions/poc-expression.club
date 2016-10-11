@@ -25,6 +25,15 @@ describe("Register", () => {
       expect(component.find('Modal').props().show).to.equal(status);
     }
 
+    it('modal shouldn\'t be opened when user is undefined', () => {
+      let props = {
+        registerLoadSchools,
+        schools: [],
+        teachers: [],
+      };
+      checkOpen(props, false);
+    });
+
     it('modal shouldn\'t be opened when user is an admin', () => {
       let user = {
         groups: ['admin'],
