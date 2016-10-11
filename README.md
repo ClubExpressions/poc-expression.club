@@ -25,6 +25,13 @@ Install [RethinkDB](https://www.rethinkdb.com/docs/install/).
 Then:
 
 ```
+=======
+You first need to install the database, RethinkDB.
+[Follow the installation instructions](https://www.rethinkdb.com/installation) for your operating system then go back here.
+
+Then,
+
+```sh
 $ git clone git@github.com:ClubExpressions/poc-expression.club
 $ cd poc-expression.club
 $ npm install -g horizon  # (as "root" on Linux/OS X)
