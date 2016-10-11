@@ -3,6 +3,7 @@ import {REGISTER_REINIT_TEACHERS} from '../constants/ActionTypes';
 import {REGISTER_LOAD_SCHOOLS_REQUEST, REGISTER_LOAD_SCHOOLS_SUCCESS, REGISTER_LOAD_SCHOOLS_FAILURE} from '../constants/ActionTypes';
 import {REGISTER_LOAD_TEACHERS_REQUEST, REGISTER_LOAD_TEACHERS_SUCCESS, REGISTER_LOAD_TEACHERS_FAILURE} from '../constants/ActionTypes';
 import {REGISTER_SAVE_USER_REQUEST, REGISTER_SAVE_USER_SUCCESS, REGISTER_SAVE_USER_FAILURE} from '../constants/ActionTypes';
+import { refreshUser } from './AuthActions.js';
 
 export function registerReinitTeachersState() {
   return {
@@ -122,6 +123,7 @@ export function registerSaveUser(user, onSuccess) {
     horizon("users").replace(user).subscribe(
       id => {
         dispatch(registerSaveUserSuccess());
+        dispatch(refreshUser(user));
         onSuccess();
       },
       error => dispatch(registerSaveUserError(error))

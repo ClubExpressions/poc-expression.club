@@ -1,4 +1,4 @@
-import { LOGOUT_USER, LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGIN_USER_LOADING } from '../constants/ActionTypes';
+import { LOGOUT_USER, LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGIN_USER_LOADING, LOGIN_USER_REFRESH } from '../constants/ActionTypes';
 import horizon from '../utils/horizon';
 import { push } from 'react-router-redux';
 
@@ -26,6 +26,15 @@ export function loginUserLoading() {
 export function logout() {
   return {
     type: LOGOUT_USER
+  }
+}
+
+export function loginUserRefresh(user) {
+  return {
+    type: LOGIN_USER_REFRESH,
+    payload: {
+      user: user
+    }
   }
 }
 
@@ -57,5 +66,11 @@ export function loadUserIfPossible() {
         dispatch(push("/users/" + user.id));
       });
     }
+  }
+}
+
+export function refreshUser(user) {
+  return (dispatch, state) => {
+    dispatch(loginUserRefresh(user));
   }
 }

@@ -31,6 +31,15 @@ export default class App extends Component {
 
     const homeLink = isAuthenticated ? `/users/${user.id}` : "/";
 
+    let displayedUserName;
+    if (user && user.name && user.firstname) {
+      displayedUserName = user.firstname + ' ' + user.name;
+    } else if (user && 'admin' === user.id) {
+      displayedUserName = 'Admin';
+    } else {
+      displayedUserName = "Anonyme";
+    }
+
     return (
       <div>
         <Modal show={this.props.isLoading} bsSize="small">
@@ -46,7 +55,7 @@ export default class App extends Component {
           </Navbar.Header>
           <Nav>
             {isAuthenticated
-              ? <NavItem eventKey={2} href="#">Mon profil ({user.id})</NavItem>
+              ? <NavItem eventKey={2} href="#">Mon profil ({displayedUserName})</NavItem>
               : ''
             }
 

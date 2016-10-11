@@ -1,5 +1,5 @@
 import { createReducer } from '../utils';
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER, LOGIN_USER_LOADING } from '../constants/ActionTypes';
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER, LOGIN_USER_LOADING, LOGIN_USER_REFRESH } from '../constants/ActionTypes';
 
 const initialState = {
   user: null,
@@ -47,5 +47,14 @@ export default createReducer(initialState, {
       'user': null,
       'statusText': 'Vous avez été déconnecté avec succès.'
     });
-  }
+  },
+  [LOGIN_USER_REFRESH]: (state, payload) => {
+    return Object.assign({}, state, {
+      isAuthenticating: false,
+      isAuthenticated: true,
+      isLoading: false,
+      user: payload.user,
+      statusText: 'Vous êtes connecté.'
+    });
+  },
 });
