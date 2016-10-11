@@ -115,6 +115,8 @@ export function registerSaveUserError(error) {
 
 export function registerSaveUser(user, onSuccess) {
   return (dispatch, state) => {
+    user.lastUpdate = new Date();
+
     dispatch(registerSaveUserRequest(user));
 
     horizon("users").replace(user).subscribe(

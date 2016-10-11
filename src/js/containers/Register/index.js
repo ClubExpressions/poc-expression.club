@@ -101,7 +101,8 @@ export class Register extends React.Component {
       ],
       name: this.state.name,
       firstname: this.state.firstname,
-      schoolYears: {}
+      registerDate: new Date(),
+      schoolYears: {},
     };
     user.schoolYears[config.currentSchoolYear] = {
       school: this.props.schools.find(school => school.id === this.state.schoolId),
