@@ -31,24 +31,37 @@ function describeTest(tested) {
 
   describe(componentName, () => {
 
+    describe("when user is undefined", () => {
+
+      it('component is not visible', () => {
+        component = renderComponent(componentObj, {}, {});
+        expect(component).to.not.exist;
+      });
+
+    });
+
+    describe("when user is null", () => {
+
+      it('component is not visible', () => {
+        component = renderComponent(componentObj, {user: null}, {});
+        expect(component).to.not.exist;
+      });
+
+    });
+
     describe("when user is authorized", () => {
 
-      beforeEach(() => {
-        component = renderComponent(componentObj, createProps(group), {});
-      });
-
       it('component is visible', () => {
+        component = renderComponent(componentObj, createProps(group), {});
         expect(component).to.exist;
       });
+
     });
 
     describe("when user is not authorized", () => {
 
-      beforeEach(() => {
-        component = renderComponent(componentObj, createProps("truc"), {});
-      });
-
       it("component is not visible", () => {
+        component = renderComponent(componentObj, createProps("truc"), {});
         expect(component).to.not.exist;
       });
 
