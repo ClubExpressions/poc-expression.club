@@ -47,9 +47,10 @@ function configureStore(initialState) {
 
   // Enable Webpack hot module replacement for reducers
   if (module.hot) {
+    console.log("Hot module reload is available, try to apply it to Redux store.");
     module.hot.accept('../reducers', () => {
       console.log("Store::Replace reducers");
-      store.replaceReducer(require('../reducers').default);
+      store.replaceReducer(rootReducer);
     });
   }
 
