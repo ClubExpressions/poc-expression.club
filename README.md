@@ -16,6 +16,14 @@
 
 ## Installation
 
+You may need Node v6. Install it manually if your repos are late. The binary
+should be named `node`. Type `sudo ln -s /usr/bin/nodejs /usr/bin/node`
+if needed.
+
+Install [RethinkDB](https://www.rethinkdb.com/docs/install/).
+
+Then:
+
 ```
 $ git clone git@github.com:ClubExpressions/poc-expression.club
 $ cd poc-expression.club
