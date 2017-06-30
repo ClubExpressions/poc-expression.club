@@ -41,7 +41,8 @@ $ npm install
 
 * Hot reloading via webpack dev server:
   * `$ npm start`
-  * Point your browser to [https://localhost:3000/](https://localhost:3000/), page hot reloads automatically when there are changes
+  * Point your browser to [https://localhost:3000/](https://localhost:3000/)
+    (do not use 127.0.0.1), page hot reloads automatically when there are changes
 
 * Build once for (ready for ***Production***):
   * `$ npm run build`
